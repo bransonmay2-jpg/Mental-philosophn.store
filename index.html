@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d0d0d">
+  <meta name="description" content="The official home of Mental Philosophn. Discover the sound, explore the latest release, and find upcoming live shows.">
+  <title>Mental Philosophn — Official Site</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --page-bg: #0d0d0d;
+      --card-bg: #111;
+      --border-color: #292929;
+      --accent-red: #b30000;
+      --bright-red: #ff1a1a;
+      --text-primary: #f5f5f5;
+      --text-muted: #a3a3a3;
+      --content-width: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--page-bg);
+      color: var(--text-primary);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 1rem;
+      z-index: 10;
+      padding: .6rem 1rem;
+      background: var(--bright-red);
+      color: #fff;
+    }
+    .skip-link:focus { top: 1rem; }
+    .site-header {
+      position: absolute;
+      inset: 0 0 auto;
+      z-index: 2;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      background: rgba(13,13,13,.75);
+      backdrop-filter: blur(10px);
+    }
+    .nav-wrap {
+      width: min(var(--content-width), 90%);
+      min-height: 76px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+    .brand {
+      text-decoration: none;
+      font-size: .95rem;
+      font-weight: 900;
+      letter-spacing: .12em;
+    }
+    .brand span { color: var(--bright-red); }
+    nav { display: flex; gap: 1.8rem; }
+    nav a {
+      text-decoration: none;
+      color: #ddd;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    nav a:hover, nav a:focus-visible { color: var(--bright-red); }
+    .hero {
+      min-height: 680px;
+      display: grid;
+      place-items: center;
+      padding: 130px 5% 90px;
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(ellipse at 50% 35%, rgba(120,0,0,.3), transparent 55%),
+        linear-gradient(180deg, #171313 0%, #0d0d0d 85%);
+    }
+    .hero-content { max-width: 850px; }
+    .eyebrow {
+      margin: 0 0 1rem;
+      color: var(--bright-red);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .28em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(3rem, 10vw, 7.7rem);
+      line-height: .92;
+      letter-spacing: -.07em;
+      text-transform: uppercase;
+      text-wrap: balance;
+    }
+    h1 span { color: var(--bright-red); }
+    .hero-copy {
+      max-width: 570px;
+      margin: 1.6rem auto 2rem;
+      color: #c1c1c1;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+    }
+    .button {
+      display: inline-block;
+      padding: .85rem 1.35rem;
+      border: 1px solid var(--bright-red);
+      background: var(--accent-red);
+      color: white;
+      text-decoration: none;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      transition: background .2s ease, transform .2s ease;
+    }
+    .button:hover { background: var(--bright-red); transform: translateY(-2px); }
+    .section-heading {
+      margin: 0 0 .5rem;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.1;
+      text-transform: uppercase;
+      letter-spacing: -.04em;
+    }
+    .section-intro { margin: 0; color: var(--text-muted); }
+    .tour-section {
+      padding: 80px 5%;
+      background-color: #0d0d0d;
+      border-bottom: 1px solid var(--border-color);
+      scroll-margin-top: 40px;
+    }
+    .section-inner { max-width: var(--content-width); margin: 0 auto; }
+    .section-header { margin-bottom: 2rem; text-align: center; }
+    .tour-dates-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .tour-row {
+      display: grid;
+      grid-template-columns: 80px 1fr 180px 150px;
+      align-items: center;
+      gap: 18px;
+      background-color: var(--card-bg);
+      border-left: 4px solid var(--accent-red);
+      border-top: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      padding: 15px 25px;
+      transition: all .3s ease;
+    }
+    .tour-row:hover {
+      border-left-color: var(--bright-red);
+      background-color: #161616;
+      box-shadow: -5px 0 15px rgba(255, 26, 26, .1);
+    }
+    .date-box {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #1a1a1a;
+      padding: 8px;
+      border: 1px solid #333;
+    }
+    .date-box .day { font-size: 1.5rem; font-weight: bold; color: var(--text-primary); line-height: 1; }
+    .date-box .month { font-size: .8rem; color: var(--bright-red); font-weight: bold; letter-spacing: 1px; }
+    .venue-info h3 { margin: 0 0 2px; font-size: 1.1rem; }
+    .venue-info p, .tour-city { margin: 0; color: var(--text-muted); font-size: .9rem; }
+    .status-tag {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: .7rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .status-tag.active { background: rgba(0,153,0,.15); color: #00e600; border: 1px solid #009900; }
+    .status-tag.warning { background: rgba(255,102,0,.15); color: #ff6600; border: 1px solid #ff6600; }
+    .status-tag.sold-out { background: rgba(153,0,0,.15); color: var(--bright-red); border: 1px solid var(--accent-red); }
+    .ticket-btn {
+      display: block;
+      text-align: center;
+      padding: 8px 12px;
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--text-muted);
+      text-decoration: none;
+      font-size: .75rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      transition: all .3s ease;
+    }
+    .ticket-btn:hover:not(.disabled) { background: var(--accent-red); border-color: var(--bright-red); color: #fff; }
+    .ticket-btn.disabled { color: #666; border-color: #333; cursor: not-allowed; }
+    .about-section { padding: 90px 5%; border-bottom: 1px solid var(--border-color); scroll-margin-top: 40px; }
+    .about-grid {
+      max-width: 900px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    .artwork {
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      padding: 2rem;
+      border: 1px solid #3a2020;
+      background: radial-gradient(circle, #4a1010, #171313 65%);
+      text-align: center;
+    }
+    .artwork strong { font-size: clamp(2rem, 5vw, 4rem); line-height: .9; letter-spacing: -.06em; text-transform: uppercase; }
+    .artwork strong span { display: block; color: var(--bright-red); }
+    .about-copy p { color: var(--text-muted); }
+    .contact-section { padding: 80px 5%; text-align: center; scroll-margin-top: 40px; }
+    .contact-section p { color: var(--text-muted); }
+    .site-footer { padding: 22px 5%; border-top: 1px solid var(--border-color); color: #777; text-align: center; font-size: .78rem; }
+    @media (max-width: 768px) {
+      .nav-wrap { min-height: 68px; }
+      nav { gap: .9rem; }
+      nav a { font-size: .68rem; letter-spacing: .06em; }
+      .hero { min-height: 600px; }
+      .tour-section { padding: 65px 6%; }
+      .tour-row {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 12px;
+        justify-items: center;
+        padding: 20px;
+      }
+      .date-box { width: 70px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .artwork { min-height: 230px; }
+    }
+    @media (max-width: 420px) {
+      .nav-wrap { width: 92%; gap: .7rem; }
+      .brand { font-size: .78rem; }
+      nav { gap: .65rem; }
+      nav a { font-size: .62rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#top" aria-label="Mental Philosophn home">MENTAL <span>PHILOSOPHN</span></a>
+      <nav aria-label="Main navigation">
+        <a href="#shows">Live</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">Independent sound · Unfiltered live</p>
+        <h1 id="hero-title">Mental<br><span>Philosophn</span></h1>
+        <p class="hero-copy">A little noise for the thoughts that won't sit still. Explore the music, catch a live show, and stay in the loop.</p>
+        <a class="button" href="#shows">Find a live show</a>
+      </div>
+    </section>
+
+    <section class="tour-section" id="shows" aria-labelledby="shows-title">
+      <div class="section-inner">
+        <div class="section-header">
+          <p class="eyebrow">Come be part of it</p>
+          <h2 class="section-heading" id="shows-title">Live Shows</h2>
+          <p class="section-intro">Upcoming dates and ticket information.</p>
+        </div>
+        <div class="tour-dates-container">
+          <article class="tour-row">
+            <div class="date-box" aria-label="November 21"><span class="day">21</span><span class="month">NOV</span></div>
+            <div class="venue-info"><h3>Downtown Music Hall</h3><p>Doors 8:00 PM · All ages</p></div>
+            <p class="tour-city">Portland, OR</p>
+            <span class="status-tag active">On sale</span>
+          </article>
+          <article class="tour-row">
+            <div class="date-box" aria-label="December 5"><span class="day">05</span><span class="month">DEC</span></div>
+            <div class="venue-info"><h3>The Underground</h3><p>Doors 7:30 PM · 18+</p></div>
+            <p class="tour-city">Seattle, WA</p>
+            <span class="status-tag warning">Limited</span>
+          </article>
+          <article class="tour-row">
+            <div class="date-box" aria-label="December 19"><span class="day">19</span><span class="month">DEC</span></div>
+            <div class="venue-info"><h3>More dates coming soon</h3><p>Follow along for announcements</p></div>
+            <p class="tour-city">Stay tuned</p>
+            <span class="status-tag sold-out">Coming soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="about-grid">
+        <div class="artwork" role="img" aria-label="Mental Philosophn in red and black"><strong>Mental<span>Philosophn</span></strong></div>
+        <div class="about-copy">
+          <p class="eyebrow">The project</p>
+          <h2 class="section-heading" id="about-title">Made for the in-between.</h2>
+          <p>Mental Philosophn lives where restless ideas meet loud guitars and late-night thoughts. This is the place to find upcoming shows and get a feel for the project.</p>
+          <p>More music and updates are on the way. Check back soon.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <p class="eyebrow">Stay connected</p>
+      <h2 class="section-heading" id="contact-title">Don't miss what's next.</h2>
+      <p>For bookings, press, or general questions, get in touch.</p>
+      <a class="button" href="mailto:hello@mentalphilosophn.store">Contact the team</a>
+    </section>
+  </main>
+  <footer class="site-footer">© <span id="year">2026</span> Mental Philosophn. All rights reserved.</footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
